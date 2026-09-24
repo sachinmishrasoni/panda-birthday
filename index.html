@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Happy Birthday Manvi 🐼 | Manvi.exe</title>
+    <meta name="description" content="A tiny birthday experience created specially for Manvi — aka Panda.">
+    <meta property="og:title" content="Manvi.exe — Birthday Successfully Deployed 🎂">
+    <meta property="og:description" content="A developer-themed birthday surprise for Panda.">
+    <style>
+        /* ===== 1. RESET ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+            border: none;
+            background: none
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        ::selection {
+            background: #ff8fd0;
+            color: #08090f
+        }
+
+        /* ===== 2. VARIABLES ===== */
+        :root {
+            --bg: #08090f;
+            --bg2: #0d1117;
+            --card: #111827;
+            --pink: #ff9ecb;
+            --lav: #c7a4ff;
+            --purple: #9b6bff;
+            --cyan: #7ee8e0;
+            --white: #f3f4f8;
+            --border: rgba(255, 255, 255, .08);
+            --grad: linear-gradient(135deg, var(--pink), var(--purple));
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #08090f;
+                --bg2: #0d1117;
+                --card: #111827;
+                --white: #f3f4f8
+            }
+        }
+
+        /* ===== 3. GLOBAL ===== */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+            height: 100%
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--white);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+            min-height: 100%
+        }
+
+        .bgfx {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .03) 1px, transparent 1px);
+            background-size: 42px 42px;
+        }
+
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: .25;
+            z-index: 0;
+            pointer-events: none
+        }
+
+        .orb1 {
+            width: 340px;
+            height: 340px;
+            background: var(--purple);
+            top: -80px;
+            left: -80px
+        }
+
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            background: var(--pink);
+            bottom: 0;
+            right: -100px
+        }
+
+        .section {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px
+        }
+
+        .section h2 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            margin-bottom: 8px;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block
+        }
+
+        .subtext {
+            color: #aab0c6;
+            margin-bottom: 32px;
+            max-width: 560px
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .6s ease, transform .6s ease
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .glass {
+            background: rgba(17, 24, 39, .6);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 18px
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            border-radius: 12px;
+            font-weight: 600;
+            background: var(--grad);
+            color: #08090f;
+            box-shadow: 0 0 24px rgba(155, 107, 255, .4);
+            transition: transform .2s
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.03)
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--white);
+            box-shadow: none
+        }
+
+        .badge {
+            display: inline-flex;
+            gap: 6px;
+            align-items: center;
+            padding: 5px 12px;
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            font-size: .75rem;
+            color: var(--cyan);
+            font-family: monospace
+        }
+
+        /* ===== 4. NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+            padding-top: calc(14px + env(safe-area-inset-top, 0px));
+            background: rgba(8, 9, 15, .75);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border)
+        }
+
+        .logo {
+            font-family: monospace;
+            font-weight: 700;
+            color: var(--pink)
+        }
+
+        .navlinks {
+            display: flex;
+            gap: 22px;
+            font-size: .9rem
+        }
+
+        .navlinks a:hover {
+            color: var(--pink)
+        }
+
+        .burger {
+            display: none;
+            font-size: 1.4rem;
+            background: none;
+            color: var(--white)
+        }
+
+        @media(max-width:640px) {
+            .navlinks {
+                position: fixed;
+                top: 56px;
+                right: 0;
+                background: var(--bg2);
+                flex-direction: column;
+                padding: 18px 26px;
+                border-left: 1px solid var(--border);
+                border-bottom: 1px solid var(--border);
+                transform: translateX(100%);
+                transition: transform .3s;
+                gap: 14px
+            }
+
+            .navlinks.open {
+                transform: translateX(0)
+            }
+
+            .burger {
+                display: block
+            }
+        }
+
+        /* ===== 5. LOADER ===== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            transition: opacity .6s, visibility .6s
+        }
+
+        #loader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none
+        }
+
+        .term {
+            font-family: monospace;
+            font-size: .85rem;
+            color: var(--cyan);
+            min-height: 220px;
+            width: min(90vw, 460px)
+        }
+
+        .term p {
+            margin: 3px 0;
+            opacity: 0;
+            animation: tin .3s forwards
+        }
+
+        @keyframes tin {
+            to {
+                opacity: 1
+            }
+        }
+
+        .loadbar {
+            width: min(90vw, 460px);
+            height: 6px;
+            background: var(--card);
+            border-radius: 99px;
+            overflow: hidden
+        }
+
+        .loadbar i {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: var(--grad);
+            transition: width .1s
+        }
+
+        /* ===== 6. TERMINAL INTRO ===== */
+        #intro {
+            min-height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 22px;
+            text-align: center;
+            padding: 24px
+        }
+
+        #intro.show {
+            display: flex
+        }
+
+        .termbox {
+            width: min(92vw, 520px);
+            text-align: left;
+            padding: 22px;
+            font-family: monospace;
+            font-size: .85rem;
+            line-height: 1.8
+        }
+
+        .termbox .l {
+            color: #7d8497
+        }
+
+        .termbox .v {
+            color: var(--pink)
+        }
+
+        /* ===== 7. PANDA ===== */
+        .panda {
+            font-size: 5rem;
+            display: inline-block;
+            animation: float 3.5s ease-in-out infinite;
+            cursor: pointer;
+            user-select: none
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-2deg)
+            }
+
+            50% {
+                transform: translateY(-14px) rotate(2deg)
+            }
+        }
+
+        .pmsg {
+            margin-top: 10px;
+            font-family: monospace;
+            color: var(--lav);
+            min-height: 24px
+        }
+
+        /* ===== 8. HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 18px;
+            padding: 90px 24px 40px
+        }
+
+        .hero.show {
+            display: flex
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 7vw, 3.6rem);
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .hero h3 {
+            color: var(--lav);
+            font-weight: 500
+        }
+
+        .hero p {
+            max-width: 560px;
+            color: #c3c8dc
+        }
+
+        .codebg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            opacity: .06;
+            font-family: monospace;
+            font-size: .8rem;
+            color: var(--cyan);
+            z-index: 0;
+            pointer-events: none;
+            line-height: 2
+        }
+
+        .actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        /* ===== 9. CARDS / DEV PROFILE ===== */
+        .profile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px
+        }
+
+        @media(max-width:700px) {
+            .profile {
+                grid-template-columns: 1fr
+            }
+        }
+
+        .profile .glass {
+            padding: 24px
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed var(--border);
+            padding: 7px 0;
+            font-size: .92rem
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3ddc84;
+            display: inline-block;
+            box-shadow: 0 0 8px #3ddc84;
+            animation: pulse 1.5s infinite
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .4
+            }
+        }
+
+        .grid7 {
+            display: grid;
+            grid-template-columns: repeat(14, 1fr);
+            gap: 3px;
+            margin-top: 14px
+        }
+
+        .grid7 span {
+            aspect-ratio: 1;
+            border-radius: 2px;
+            background: var(--card)
+        }
+
+        /* ===== 10. STAT / MEMORY CARDS ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px
+        }
+
+        .card {
+            padding: 20px;
+            transition: transform .25s
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.02)
+        }
+
+        .card .ic {
+            font-size: 1.6rem
+        }
+
+        .card h4 {
+            margin: 8px 0 4px;
+            color: var(--pink)
+        }
+
+        .card p {
+            color: #a7adc4;
+            font-size: .88rem
+        }
+
+        /* ===== 11. CODE EDITOR ===== */
+        .editor {
+            overflow: hidden
+        }
+
+        .ehead {
+            display: flex;
+            gap: 6px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            font-family: monospace;
+            font-size: .78rem;
+            color: #9199b3
+        }
+
+        .dotc {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block
+        }
+
+        pre.code {
+            padding: 18px;
+            font-family: monospace;
+            font-size: .8rem;
+            line-height: 1.7;
+            overflow-x: auto;
+            color: #c7ccdd
+        }
+
+        .kw {
+            color: var(--purple)
+        }
+
+        .str {
+            color: var(--cyan)
+        }
+
+        .fn {
+            color: var(--pink)
+        }
+
+        .out {
+            font-family: monospace;
+            font-size: .82rem;
+            padding: 0 18px 18px;
+            color: var(--lav);
+            min-height: 20px
+        }
+
+        /* ===== 12. GAME ===== */
+        .gamewrap {
+            position: relative;
+            height: 340px;
+            overflow: hidden
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.8rem;
+            cursor: pointer;
+            animation: pop .25s
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        .score {
+            font-family: monospace;
+            color: var(--cyan)
+        }
+
+        /* ===== 13. CAKE ===== */
+        .cakewrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: center
+        }
+
+        .cake {
+            width: 180px
+        }
+
+        .candle {
+            width: 6px;
+            height: 26px;
+            background: #fff2c7;
+            margin: 0 auto;
+            position: relative
+        }
+
+        .flame {
+            width: 10px;
+            height: 14px;
+            background: radial-gradient(circle, #ffdd66, #ff7a45);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: absolute;
+            top: -14px;
+            left: -2px;
+            animation: flick .4s infinite alternate
+        }
+
+        @keyframes flick {
+            to {
+                transform: scaleY(1.15) rotate(3deg)
+            }
+        }
+
+        .candles {
+            display: flex;
+            gap: 10px;
+            justify-content: center
+        }
+
+        .layer {
+            height: 44px;
+            border-radius: 10px;
+            background: var(--grad);
+            margin-top: 4px
+        }
+
+        .layer2 {
+            height: 34px;
+            width: 80%;
+            margin: 4px auto 0;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--lav), var(--cyan))
+        }
+
+        /* ===== 14. SECRET ===== */
+        .secret {
+            max-width: 560px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 32px
+        }
+
+        .letter {
+            white-space: pre-line;
+            text-align: left;
+            line-height: 1.8;
+            color: #d6d9ea;
+            margin-top: 16px;
+            font-family: 'Georgia', serif
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 24px;
+            color: #7d8497;
+            font-family: monospace;
+            font-size: .85rem
+        }
+
+        canvas#fx {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 90
+        }
+
+        .musicbtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 60;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 1px solid var(--border);
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .cursor-dot {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: var(--pink);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 200;
+            opacity: .7
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+        }
+
+        @media(max-width:480px) {
+            .actions .btn {
+                width: 100%;
+                justify-content: center
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bgfx"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <canvas id="fx"></canvas>
+
+    <div id="loader">
+        <div class="term" id="loglines"></div>
+        <div class="loadbar"><i id="bar"></i></div>
+        <button class="btn" id="enterBtn" style="display:none">ENTER BIRTHDAY MODE →</button>
+    </div>
+
+    <nav class="nav">
+        <span class="logo">🐼 MANVI.EXE</span>
+        <button class="burger" id="burger" aria-label="Menu">☰</button>
+        <div class="navlinks" id="navlinks">
+            <a href="#hero">Home</a><a href="#panda-sec">Panda</a><a href="#dev">Developer</a><a
+                href="#memories">Memories</a><a href="#surprise">Surprise</a>
+        </div>
+    </nav>
+
+    <section id="intro" class="section">
+        <div class="glass termbox">
+            <p><span class="l">$ whoami</span></p>
+            <p class="v">&gt; manvi</p>
+            <p><span class="l">$ nickname</span></p>
+            <p class="v">&gt; panda 🐼</p>
+            <p><span class="l">$ profession</span></p>
+            <p class="v">&gt; developer 💻</p>
+            <p><span class="l">$ current_status</span></p>
+            <p class="v">&gt; TOO CUTE TO DEBUG</p>
+            <p><span class="l">$ birthday_status</span></p>
+            <p class="v">&gt; READY TO CELEBRATE 🎂</p>
+        </div>
+        <p style="color:var(--lav);font-family:monospace">Hey Panda... 👀<br>Someone has prepared something for you.</p>
+        <button class="btn" id="runSurprise">Run Surprise.sh</button>
+    </section>
+
+    <section class="hero" id="hero">
+        <span class="badge">&lt;developer /&gt; 🐼 🎂</span>
+        <h1>Happy Birthday, Manvi! 🎂</h1>
+        <h3>aka PANDA 🐼</h3>
+        <span id="panda-sec" class="panda" role="button" aria-label="Panda, click me" tabindex="0">🐼</span>
+        <div class="pmsg" id="pmsg"></div>
+        <p>Today isn't just another day in the calendar... Today is the day the world got one more amazing developer.
+        </p>
+        <div class="actions">
+            <button class="btn" id="startCeleb">Start the Celebration</button>
+            <a class="btn ghost" href="#secret">Open Secret Message</a>
+        </div>
+    </section>
+
+    <section class="section reveal">
+        <div class="glass" style="padding:28px;max-width:640px;margin:0 auto">
+            <p style="font-family:monospace;line-height:2;color:#d6d9ea">Dear Manvi,<br><br>
+                Some people write code, some people debug code, and some people somehow manage to make every boring day
+                a little more fun.<br><br>
+                You're one of those people.<br><br>
+                So today, we're temporarily disabling all bugs, ignoring all pending tasks, and deploying one very
+                important update:<br><br>
+                <span style="color:var(--pink)">MANVI v∞.0.0 🎂</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="section reveal" id="dev">
+        <h2>Developer Profile</h2>
+        <p class="subtext">Currently avoiding bugs since forever.</p>
+        <div class="profile">
+            <div class="glass">
+                <div class="row"><span>Name</span><span>Manvi</span></div>
+                <div class="row"><span>Alias</span><span>Panda 🐼</span></div>
+                <div class="row"><span>Role</span><span>Developer</span></div>
+                <div class="row"><span>Favorite Language</span><span>????</span></div>
+                <div class="row"><span>Coffee Dependency</span><span>99%</span></div>
+                <div class="row"><span>Bug Fixing Level</span><span>Legendary</span></div>
+                <div class="row" style="border:none"><span>Birthday Mode</span><span><span class="dot"></span>
+                        ENABLED</span></div>
+            </div>
+            <div class="glass" style="padding:20px">
+                <span style="font-family:monospace;color:#9199b3;font-size:.8rem"><span class="dot"></span> SYSTEM
+                    ONLINE</span>
+                <p style="margin-top:10px;color:#a7adc4;font-size:.85rem">Contribution activity (coding · debugging ·
+                    coffee · chaos · birthday energy)</p>
+                <div class="grid7" id="grid7"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal">
+        <h2>Manvi Developer Stats</h2>
+        <div class="cards">
+            <div class="card glass">
+                <div class="ic">💻</div>
+                <h4>Code</h4>
+                <p>Always compiling</p>
+            </div>
+            <div class="card glass">
+                <div class="ic">🐼</div>
+                <h4>Panda Energy</h4>
+                <p>100%</p>
+            </div>
+            <div class="card glass">
+                <div class="ic">🐛</div>
+                <h4>Bugs Fixed</h4>
+                <p>Classified</p>
+            </div>
+            <div class="card glass">
+                <div class="ic">☕</div>
+                <h4>Coffee</h4>
+                <p>Critical dependency</p>
+            </div>
+            <div class="card glass">
+                <div class="ic">🎂</div>
+                <h4>Birthday Mood</h4>
+                <p>MAXIMUM</p>
+            </div>
+            <div class="card glass">
+                <div class="ic">❤️</div>
+                <h4>Friendship</h4>
+                <p>Production Ready</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal">
+        <h2>Interactive Developer Code</h2>
+        <div class="glass editor">
+            <div class="ehead"><span class="dotc" style="background:#ff5f56"></span><span class="dotc"
+                    style="background:#ffbd2e"></span><span class="dotc" style="background:#27c93f"></span>&nbsp;
+                manvi-birthday.js</div>
+            <pre class="code"><span class="kw">const</span> Manvi = {
+  nickname: <span class="str">"Panda"</span>,
+  profession: <span class="str">"Developer"</span>,
+  personality: <span class="str">"Awesome"</span>,
+  birthday: <span class="kw">true</span>
+};
+
+<span class="kw">function</span> <span class="fn">celebrate</span>(person) {
+  console.log(`Happy Birthday ${person.nickname}! 🎂`);
+  <span class="kw">return</span> <span class="str">"Have an amazing year!"</span>;
+}
+
+celebrate(Manvi);</pre>
+            <div style="padding:0 18px 12px"><button class="btn ghost" id="runCode">▶ RUN CODE</button></div>
+            <div class="out" id="codeOut"></div>
+        </div>
+    </section>
+
+    <section class="section reveal">
+        <h2>Catch the Panda Hearts ❤️</h2>
+        <p class="subtext">Click 5 hearts to unlock max happiness.</p>
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="gamewrap glass" id="gamewrap"></div>
+    </section>
+
+    <section class="section reveal" id="memories">
+        <h2>Some Things That Make You... You 🐼</h2>
+        <div class="cards">
+            <div class="card glass">
+                <h4>Developer Brain 🧠</h4>
+                <p>Can turn caffeine into code.</p>
+            </div>
+            <div class="card glass">
+                <h4>Debugging Mode 🐛</h4>
+                <p>Because bugs apparently pay rent.</p>
+            </div>
+            <div class="card glass">
+                <h4>Panda Mode 🐼</h4>
+                <p>Cute but dangerously productive.</p>
+            </div>
+            <div class="card glass">
+                <h4>Random Conversations 💬</h4>
+                <p>Somehow they always become funny.</p>
+            </div>
+            <div class="card glass">
+                <h4>Late Night Coding 🌙</h4>
+                <p>"One more bug... one more feature... okay, one more."</p>
+            </div>
+            <div class="card glass">
+                <h4>Coffee Powered ☕</h4>
+                <p>Runs on 99% caffeine, 1% sleep.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="secret">
+        <div class="glass secret">
+            <h2 style="font-size:1.3rem">🔐 SECRET_MESSAGE.txt</h2>
+            <p class="subtext" id="secretHint">Access restricted.</p>
+            <button class="btn" id="unlockBtn">ENTER PASSWORD</button>
+            <div class="letter" id="letter" style="display:none"></div>
+        </div>
+    </section>
+
+    <section class="section reveal" id="surprise">
+        <div class="cakewrap glass" style="padding:36px">
+            <h2>Okay Panda... enough coding.</h2>
+            <p class="subtext">Time for cake. 🎂</p>
+            <div class="cake">
+                <div class="candles">
+                    <div class="candle">
+                        <div class="flame" id="fl1"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame" id="fl2"></div>
+                    </div>
+                    <div class="candle">
+                        <div class="flame" id="fl3"></div>
+                    </div>
+                </div>
+                <div class="layer2"></div>
+                <div class="layer"></div>
+            </div>
+            <button class="btn" id="wishBtn">MAKE A WISH ✨</button>
+            <p id="wishMsg" style="color:var(--lav);font-family:monospace;min-height:20px"></p>
+        </div>
+    </section>
+
+    <section class="section reveal">
+        <div class="glass" style="padding:32px;text-align:center">
+            <h2>DEPLOYMENT COMPLETE 🚀</h2>
+            <pre style="font-family:monospace;color:#9199b3;margin:16px 0;font-size:.85rem">Build: MANVI-BIRTHDAY-2026
+Status: SUCCESS
+Errors: 0
+Bugs: 0
+Happiness: ∞
+Panda Energy: 100%</pre>
+            <p style="font-size:1.3rem;color:var(--pink);margin-bottom:10px">Happy Birthday, Manvi! 🐼🎂</p>
+            <p class="subtext" style="margin:0 auto">Keep building amazing things. Keep chasing your dreams. And never
+                forget to take breaks from debugging. 😌</p>
+            <p style="margin-top:14px;color:var(--lav)">Made specially for Panda 🐼</p>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Manvi Birthday Experience · Built with HTML + CSS + JavaScript + Friendship 💻🐼<br>git push happiness
+    </footer>
+
+    <button class="musicbtn" id="musicBtn" aria-label="Toggle music">🔇</button>
+
+    <script>
+        const birthdayConfig = {
+            name: "Manvi", nickname: "Panda", profession: "Developer", year: 2026,
+            favoriteLanguage: "Your Language", favoriteEmoji: "🐼", customMessage: "Happy Birthday, Panda!"
+        };
+        const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function initLoader() {
+            const lines = ["Initializing birthday system...", "[✓] Loading Panda module...", "[✓] Compiling friendship.exe...",
+                "[✓] Installing happiness...", "[✓] Detecting developer...", "[✓] Developer found: MANVI", "[✓] Nickname detected: PANDA",
+                "[✓] Birthday mode activated...", "[✓] Preparing surprise...", "System Ready."];
+            const box = document.getElementById('loglines'), bar = document.getElementById('bar'), btn = document.getElementById('enterBtn');
+            let i = 0;
+            const t = setInterval(() => {
+                if (i < lines.length) {
+                    const p = document.createElement('p'); p.textContent = lines[i]; box.appendChild(p);
+                    bar.style.width = ((i + 1) / lines.length * 100) + '%'; i++;
+                }
+                else { clearInterval(t); btn.style.display = 'inline-flex'; }
+            }, reduced ? 60 : 220);
+            btn.addEventListener('click', () => {
+                document.getElementById('loader').classList.add('hide');
+                document.getElementById('intro').classList.add('show');
+                initMusic(true);
+            });
+        }
+        function initTerminal() {
+            document.getElementById('runSurprise').addEventListener('click', () => {
+                document.getElementById('intro').classList.remove('show');
+                document.getElementById('hero').classList.add('show');
+                fx.confetti();
+            });
+        }
+        function initPanda() {
+            const msgs = ["Hey! Stop poking me 😂", "Okay okay... Happy Birthday to me! 🐼", "Debugging happiness... 100% complete.",
+                "Did someone say cake?", "404: Serious Panda Not Found.", "Why am I being clicked? 😭"];
+            const p = document.querySelector('.panda'), m = document.getElementById('pmsg');
+            const react = () => { m.textContent = msgs[Math.floor(Math.random() * msgs.length)]; };
+            p.addEventListener('click', react);
+            p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') react(); });
+            document.getElementById('startCeleb').addEventListener('click', () => fx.confetti());
+        }
+        function buildGrid() {
+            const g = document.getElementById('grid7'); const levels = [0, 1, 2, 3, 4];
+            for (let i = 0; i < 70; i++) {
+                const s = document.createElement('span'); const l = levels[Math.floor(Math.random() * levels.length)];
+                const op = [0, .25, .5, .75, 1][l]; s.style.background = `rgba(199,164,255,${op})`; g.appendChild(s);
+            }
+        }
+        function initCode() {
+            const out = document.getElementById('codeOut');
+            const seq = ["> Initializing...", "> Loading happiness...", "> Finding birthday girl...", "> Manvi found 🐼",
+                "> Injecting happiness...", "> Compiling wishes...", "> SUCCESS 🎉", "Happy Birthday, Panda! ❤️"];
+            document.getElementById('runCode').addEventListener('click', () => {
+                out.innerHTML = ''; let i = 0;
+                const t = setInterval(() => { if (i < seq.length) { out.innerHTML += seq[i] + '<br>'; i++; } else clearInterval(t); }, reduced ? 60 : 280);
+            });
+        }
+        function initGame() {
+            const wrap = document.getElementById('gamewrap'), scoreEl = document.getElementById('score');
+            let score = 0, done = false;
+            function spawn() {
+                if (done) return;
+                const h = document.createElement('span'); h.className = 'heart'; h.textContent = '❤️';
+                h.style.left = Math.random() * 88 + '%'; h.style.top = Math.random() * 80 + '%';
+                h.addEventListener('click', () => {
+                    h.remove(); score++; scoreEl.textContent = score;
+                    if (score >= 5 && !done) { done = true; wrap.innerHTML = '<p style="padding:24px;font-family:monospace;color:var(--pink)">Achievement Unlocked:<br>PANDA HAPPINESS LEVEL 100% 🐼</p>'; fx.confetti(); }
+                });
+                wrap.appendChild(h);
+                setTimeout(() => h.remove(), 2200);
+            }
+            const iv = setInterval(() => { if (done) { clearInterval(iv); return; } spawn(); }, 900);
+        }
+        function initSecret() {
+            document.getElementById('unlockBtn').addEventListener('click', function () {
+                const hint = document.getElementById('secretHint'), letter = document.getElementById('letter'), btn = this;
+                hint.innerHTML = "&gt; Checking authorization...<br>&gt; User detected: Panda<br>&gt; Birthday privilege verified.<br>&gt; Access granted.";
+                hint.style.fontFamily = 'monospace';
+                btn.style.display = 'none';
+                letter.style.display = 'block';
+                letter.textContent = "Manvi,\n\nI hope this year gives you countless reasons to smile, lots of exciting things to build, fewer bugs, more wins, and plenty of moments that make you genuinely happy.\n\nKeep coding.\nKeep growing.\nKeep being you.\n\nHappy Birthday, Panda! 🐼🎂\n\n— Your fellow developer";
+            });
+        }
+        function initCake() {
+            document.getElementById('wishBtn').addEventListener('click', function () {
+                ['fl1', 'fl2', 'fl3'].forEach(id => document.getElementById(id).style.display = 'none');
+                document.getElementById('wishMsg').textContent = 'Wish successfully deployed! ✨ May all your good wishes find their way into production.';
+                fx.confetti(); fx.fireworks();
+                this.disabled = true;
+            });
+        }
+        function initNavigation() {
+            const burger = document.getElementById('burger'), links = document.getElementById('navlinks');
+            burger.addEventListener('click', () => links.classList.toggle('open'));
+            links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+        }
+        function initReveal() {
+            const els = document.querySelectorAll('.reveal');
+            const io = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: .15 });
+            els.forEach(el => io.observe(el));
+        }
+        function initCursor() {
+            if (reduced || matchMedia('(pointer:coarse)').matches) return;
+            let last = 0;
+            document.addEventListener('mousemove', e => {
+                const now = Date.now(); if (now - last < 40) return; last = now;
+                const d = document.createElement('div'); d.className = 'cursor-dot';
+                d.style.left = e.clientX + 'px'; d.style.top = e.clientY + 'px';
+                document.body.appendChild(d);
+                setTimeout(() => { d.style.transition = 'opacity .5s'; d.style.opacity = 0; }, 50);
+                setTimeout(() => d.remove(), 550);
+            });
+        }
+        let audioEl = null, musicOn = false;
+        function initMusic(startedByUser) {
+            const btn = document.getElementById('musicBtn');
+            if (!audioEl) { audioEl = new Audio('assets/birthday.mp3'); audioEl.loop = true; }
+            btn.addEventListener('click', () => {
+                musicOn = !musicOn; btn.textContent = musicOn ? '🔊' : '🔇';
+                if (musicOn) { audioEl.play().catch(() => { }); } else { audioEl.pause(); }
+            });
+            if (startedByUser) { /* only unlocks audio context via user gesture; playback stays muted until toggle click */ }
+        }
+
+        /* confetti + fireworks on shared canvas */
+        const canvas = document.getElementById('fx'), ctx = canvas.getContext('2d');
+        function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+        addEventListener('resize', resize); resize();
+        const fx = (() => {
+            let particles = [];
+            function confetti() {
+                if (reduced) return;
+                const colors = ['#ff9ecb', '#c7a4ff', '#7ee8e0', '#9b6bff', '#ffffff'];
+                for (let i = 0; i < 80; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width, y: -10, vx: (Math.random() - .5) * 3, vy: 2 + Math.random() * 3,
+                        size: 4 + Math.random() * 4, color: colors[Math.floor(Math.random() * colors.length)], life: 150, type: 'c', rot: Math.random() * 360
+                    });
+                }
+                loop();
+            }
+            function fireworks() {
+                if (reduced) return;
+                for (let b = 0; b < 4; b++) {
+                    const cx = canvas.width * (.2 + Math.random() * .6), cy = canvas.height * (.2 + Math.random() * .4);
+                    const colors = ['#ff9ecb', '#c7a4ff', '#7ee8e0'];
+                    for (let i = 0; i < 40; i++) {
+                        const ang = (Math.PI * 2 * i) / 40, sp = 2 + Math.random() * 3;
+                        particles.push({
+                            x: cx, y: cy, vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp, size: 3,
+                            color: colors[Math.floor(Math.random() * colors.length)], life: 60, type: 'f'
+                        });
+                    }
+                }
+                loop();
+            }
+            let running = false;
+            function loop() {
+                if (running) return; running = true;
+                function frame() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.x += p.vx; p.y += p.vy; if (p.type === 'c') p.vy += 0.03; p.life--; p.rot = (p.rot || 0) + 5;
+                        ctx.globalAlpha = Math.max(p.life / 150, 0);
+                        ctx.fillStyle = p.color;
+                        ctx.fillRect(p.x, p.y, p.size, p.size);
+                    });
+                    particles = particles.filter(p => p.life > 0);
+                    ctx.globalAlpha = 1;
+                    if (particles.length) { requestAnimationFrame(frame); } else { running = false; }
+                }
+                requestAnimationFrame(frame);
+            }
+            return { confetti, fireworks };
+        })();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initLoader(); initTerminal(); initPanda(); buildGrid(); initCode(); initGame();
+            initSecret(); initCake(); initNavigation(); initReveal(); initCursor();
+        });
+    </script>
+</body>
+
+</html>

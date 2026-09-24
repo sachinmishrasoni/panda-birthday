@@ -1080,7 +1080,7 @@ Panda Energy: 100%</pre>
                 setTimeout(() => d.remove(), 550);
             });
         }
-        let audioEl = null, musicOn = false;
+        let audioEl = null, musicOn = true;
         function initMusic(startedByUser) {
             const btn = document.getElementById('musicBtn');
             if (!audioEl) { audioEl = new Audio('assets/birthday.mp3'); audioEl.loop = true; }
@@ -1088,7 +1088,8 @@ Panda Energy: 100%</pre>
                 musicOn = !musicOn; btn.textContent = musicOn ? '🔊' : '🔇';
                 if (musicOn) { audioEl.play().catch(() => { }); } else { audioEl.pause(); }
             });
-            if (startedByUser) { /* only unlocks audio context via user gesture; playback stays muted until toggle click */ }
+            btn.textContent = musicOn ? '🔊' : '🔇';
+            if (startedByUser && musicOn) { audioEl.play().catch(() => { }); }
         }
 
         /* confetti + fireworks on shared canvas */
